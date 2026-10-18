@@ -23,7 +23,7 @@ jobs:
       - name: Réveil des calendriers (le serveur relit les équipes)
         run: |
           for slug in $(ls equipes/*.html | xargs -n1 basename | sed 's/\.html$//'); do
-            curl -s -o /dev/null "https://lmavqchwevcvvneblqld.supabase.co/functions/v1/calendrier/equipe/$slug.ics" || true
+            curl -s --max-time 10 -o /dev/null "https://lmavqchwevcvvneblqld.supabase.co/functions/v1/calendrier/equipe/$slug.ics" || true
           done
           sleep 240
       - name: Mise à jour des pages
@@ -33,7 +33,14 @@ jobs:
           git config user.name "eSportly (mise à jour automatique)"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || (git commit -m "Matchs du jour" && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "Matchs du jour"
+          # Johan ou une autre session a pu envoyer entre-temps : on se remet par-dessus avant d'envoyer.
+          for essai in 1 2 3; do
+            git pull --rebase -q && git push && exit 0
+            sleep 10
+          done
+          exit 1
       # Un envoi fait avec le jeton d'Actions ne relance pas toujours la publication de GitHub Pages : on la demande.
       - name: Publication
         env:
