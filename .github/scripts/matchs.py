@@ -5,6 +5,8 @@
 # Usage : python3 .github/scripts/matchs.py   (depuis la racine du site)
 from __future__ import annotations
 
+import base64
+import hashlib
 import html
 import json
 import re
@@ -266,6 +268,33 @@ STYLE = (".matchs{list-style:none;padding:0;margin:0;display:grid;gap:10px}"
          ".evts{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.evts a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--text);text-decoration:none;font-weight:600;font-size:15px}"
          ".cal-buttons{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.cal-google{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border-radius:999px;border:1px solid var(--border);color:var(--text);font-weight:700;text-decoration:none}")
 
+# L'heure du visiteur à côté de l'heure de Paris, quand elles diffèrent (Brésil, Amériques, Asie…) :
+# « 08:00 chez toi », avec le jour s'il change. Un seul petit script, autorisé par son empreinte (CSP).
+LOCAL_JS = ("(function(){var d=document,h=d.documentElement,l=(h.lang||'fr').slice(0,2),"
+            "w={fr:'chez toi',en:'your time',es:'tu hora',de:'deine Zeit',pt:'seu horário'}[l]||'your time',"
+            "t=d.querySelectorAll('.matchs time[datetime]'),P='Europe/Paris';"
+            "for(var i=0;i<t.length;i++){var x=new Date(t[i].getAttribute('datetime'));if(isNaN(x))continue;"
+            "try{var o={hour:'2-digit',minute:'2-digit'},k=function(z){return new Intl.DateTimeFormat('en-CA',"
+            "{timeZone:z,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(x)},"
+            "a=k(P),b=k(undefined);if(a===b)continue;if(a.slice(0,10)!==b.slice(0,10))o.weekday='short';"
+            "var s=d.createElement('span');s.className='loc';s.textContent=new Intl.DateTimeFormat(h.lang||'fr',o).format(x)+' '+w;"
+            "t[i].insertAdjacentElement('afterend',s)}catch(e){}}})();")
+LOCAL_HASH = base64.b64encode(hashlib.sha256(LOCAL_JS.encode("utf-8")).digest()).decode()
+LOCAL_STYLE = ".matchs .loc{font-size:14px;color:var(--soft);font-weight:600}"
+
+
+def with_local_times(page: str) -> str:
+    """Ajoute (une fois) le script de l'heure locale, son empreinte dans la CSP et son style."""
+    if LOCAL_JS not in page:
+        page = re.sub(r"<script>\(function\(\)\{var d=document,h=d\.documentElement,l=.*?</script>\n?", "", page, flags=re.S)
+        page = page.replace("</body>", f"<script>{LOCAL_JS}</script>\n</body>", 1)
+    if f"'sha256-{LOCAL_HASH}'" not in page:
+        page = re.sub(r"(script-src [^;\"]*)", lambda m: m.group(1) + f" 'sha256-{LOCAL_HASH}'", page, count=1)
+    if ".matchs .loc{" not in page:
+        page = page.replace("</style>", LOCAL_STYLE + "</style>", 1)
+    return page
+
+
 WIDGET = """<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
@@ -308,7 +337,7 @@ for slug in organisations:
                 anchor = source.find("</main>")
             source = source[:anchor] + block + "\n" + source[anchor:]
             source = source.replace("</style>", STYLE + "</style>", 1)
-        page.write_text(source, encoding="utf-8")
+        page.write_text(with_local_times(source), encoding="utf-8")
     # Calendrier à intégrer sur un site de fans (iframe), une page par équipe et par langue, sans script.
     for code in ("fr", "en"):
         t = LANGS[code]
@@ -362,7 +391,7 @@ for code, t in LANGS.items():
     template = re.sub(r'<main class="wrap">.*?</main>', lambda _: f'<main class="wrap">{main}</main>', template, flags=re.S)
     if ".matchs{" not in template:
         template = template.replace("</style>", STYLE + "</style>", 1)
-    (SITE / t["file"]).write_text(template, encoding="utf-8")
+    (SITE / t["file"]).write_text(with_local_times(template), encoding="utf-8")
 # 3) Grands événements (5 langues) : programme, résultats cachés, calendrier, comment regarder.
 for slug, (event_name, game_name) in EVENTS.items():
     events = read_calendar(slug, API + "evenement/")
@@ -407,7 +436,7 @@ for slug, (event_name, game_name) in EVENTS.items():
         template = re.sub(r'(<meta property="og:image" content=")[^"]*', lambda m: m.group(1) + f"{URL}partage/semaine-{code}.jpg", template)
         if ".resultats{" not in template:
             template = template.replace("</style>", STYLE + "</style>", 1)
-        (SITE / pages[code]).write_text(template, encoding="utf-8")
+        (SITE / pages[code]).write_text(with_local_times(template), encoding="utf-8")
     print(f"{event_name} : {len(upcoming)} à venir, {len(results)} résultats")
 
 print(f"{len(organisations)} équipes, {len(week)} matchs cette semaine, {len(week_results)} résultats")
