@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-Vt6s843eZ37duUZbTQRyjOE8leI20bzrXQEL5rpsv04='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://lmavqchwevcvvneblqld.supabase.co; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-kP4xabuEG2QGAFA4OkJ/9sJQuIayKp5NGW0u3ufNGFs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://lmavqchwevcvvneblqld.supabase.co; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Un match sur eSportly</title>
@@ -42,7 +42,12 @@
   const id = new URLSearchParams(location.search).get("id");
   const button = document.getElementById("open");
   if (id && /^\d{1,12}$/.test(id)) {
-    const target = "esportly://match/" + id;
+    // Un lien de défi (pronostic d'un ami) garde son équipe et son code jusque dans l'app.
+    const params = new URLSearchParams(location.search);
+    const defi = params.get("defi"), ami = params.get("ami");
+    const challenge = defi && /^\d{1,12}$/.test(defi) && ami && /^[0-9a-f]{8}$/i.test(ami)
+      ? "?defi=" + defi + "&ami=" + ami.toLowerCase() : "";
+    const target = "esportly://match/" + id + challenge;
     button.href = target;
     location.href = target;
   } else {
