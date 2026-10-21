@@ -26,15 +26,15 @@ BETA_LINK = re.compile(r'https://lmavqchwevcvvneblqld\.supabase\.co/functions/v1
 # Textes simples, toutes pages confondues (les plus longs d'abord).
 TEXTS = [
     # Bandeau du haut de l'accueil (5 langues)
-    ("<b>Sortie sur l'App Store le 23 octobre</b><span> · Rejoins la bêta gratuite en attendant →</span>",
+    ("<b>Sortie sur l'App Store le 2 novembre</b><span> · Rejoins la bêta gratuite en attendant →</span>",
      "<b>eSportly est disponible sur l'App Store</b><span> · Télécharge-la gratuitement →</span>"),
-    ("<b>Out on the App Store on October 23</b><span> · Join the free beta meanwhile →</span>",
+    ("<b>Out on the App Store on November 2</b><span> · Join the free beta meanwhile →</span>",
      "<b>eSportly is out on the App Store</b><span> · Download it for free →</span>"),
-    ("<b>Llega al App Store el 23 de octubre</b><span> · Únete a la beta gratuita mientras tanto →</span>",
+    ("<b>Llega al App Store el 2 de noviembre</b><span> · Únete a la beta gratuita mientras tanto →</span>",
      "<b>eSportly ya está en el App Store</b><span> · Descárgala gratis →</span>"),
-    ("<b>Ab 23. Oktober im App Store</b><span> · Bis dahin die kostenlose Beta testen →</span>",
+    ("<b>Ab 2. November im App Store</b><span> · Bis dahin die kostenlose Beta testen →</span>",
      "<b>eSportly ist jetzt im App Store</b><span> · Kostenlos laden →</span>"),
-    ("<b>Chega à App Store em 23 de outubro</b><span> · Entre na beta gratuita enquanto isso →</span>",
+    ("<b>Chega à App Store em 2 de novembro</b><span> · Entre na beta gratuita enquanto isso →</span>",
      "<b>O eSportly chegou à App Store</b><span> · Baixe grátis →</span>"),
     # Français
     ("Bêta publique gratuite, eSportly+ offert pendant les tests. Il te faut l'app TestFlight d'Apple (gratuite).",
