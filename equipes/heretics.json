@@ -1,9 +1,10 @@
 {
  "organisation": "Heretics",
  "noms": [
-  "heretics"
+  "heretics",
+  "team heretics"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": null,
  "couleur_affichee": null,
  "origine": "aucune",
@@ -22,6 +23,24 @@
    "sigle": "Heretics",
    "jeu": "r6siege",
    "logo": "https://cdn-api.pandascore.co/images/team/image/127903/900px_team_heretics_2020_lightmode.png",
+   "pays": "ES",
+   "couleur_logo": null
+  },
+  {
+   "id": 130105,
+   "nom": "Team Heretics",
+   "sigle": "TH",
+   "jeu": "lol",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/130105/team_hereticslogo_square.png",
+   "pays": "ES",
+   "couleur_logo": null
+  },
+  {
+   "id": 128622,
+   "nom": "Team Heretics",
+   "sigle": "TH",
+   "jeu": "valorant",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/128622/600px_team_heretics_2020_infobox.png",
    "pays": "ES",
    "couleur_logo": null
   }

@@ -3,7 +3,7 @@
  "noms": [
   "fnatic"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": null,
  "couleur_affichee": "#FF5900",
  "origine": "officielle",
@@ -12,7 +12,7 @@
   "secondaire": null,
   "confiance": "moyenne",
   "source": "https://fnatic.com/",
-  "site": null,
+  "site": "https://fnatic.com/",
   "note": "vérifiée le 11 octobre 2026"
  },
  "equipes": [
@@ -22,6 +22,33 @@
    "sigle": "FNC",
    "jeu": "r6siege",
    "logo": "https://cdn-api.pandascore.co/images/team/image/126928/600px_fnatic_2020_infoboximage.png",
+   "pays": "GB",
+   "couleur_logo": "#FF5A00"
+  },
+  {
+   "id": 394,
+   "nom": "Fnatic",
+   "sigle": "FNC",
+   "jeu": "lol",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/394/220px_fnaticlogo_square.png",
+   "pays": "GB",
+   "couleur_logo": "#FF5B00"
+  },
+  {
+   "id": 3217,
+   "nom": "fnatic",
+   "sigle": "FNC",
+   "jeu": "csgo",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/3217/1199px_fnatic_2020_allmode.png",
+   "pays": "GB",
+   "couleur_logo": "#FF5A00"
+  },
+  {
+   "id": 128537,
+   "nom": "Fnatic",
+   "sigle": "FNC",
+   "jeu": "valorant",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/128537/900px_fnatic_2020.png",
    "pays": "GB",
    "couleur_logo": "#FF5A00"
   }

@@ -4,7 +4,7 @@
   "liquid",
   "team liquid"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": null,
  "couleur_affichee": "#3BB0D4",
  "origine": "officielle",
@@ -61,6 +61,15 @@
    "logo": "https://cdn-api.pandascore.co/images/team/image/126935/526px_team_liquid_2024_lightmode.png",
    "pays": "NL",
    "couleur_logo": "#243552"
+  },
+  {
+   "id": 3213,
+   "nom": "Liquid",
+   "sigle": "TL",
+   "jeu": "csgo",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/3213/463px_team_liquid_2024_full_lightmode.png",
+   "pays": "US",
+   "couleur_logo": "#223352"
   }
  ]
 }

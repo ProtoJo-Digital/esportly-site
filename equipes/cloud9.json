@@ -3,7 +3,7 @@
  "noms": [
   "cloud9"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": null,
  "couleur_affichee": "#00AEEF",
  "origine": "officielle",
@@ -33,6 +33,24 @@
    "logo": "https://cdn-api.pandascore.co/images/team/image/127217/320px_cloud9.png",
    "pays": "US",
    "couleur_logo": "#2598D4"
+  },
+  {
+   "id": 3223,
+   "nom": "Cloud9",
+   "sigle": "C9",
+   "jeu": "csgo",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/3223/CLOUD_9.png",
+   "pays": "US",
+   "couleur_logo": "#1693D4"
+  },
+  {
+   "id": 128819,
+   "nom": "Cloud9",
+   "sigle": "C9",
+   "jeu": "valorant",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/128819/800px_cloud9_2023_allmode.png",
+   "pays": "US",
+   "couleur_logo": "#00B0F2"
   }
  ]
 }

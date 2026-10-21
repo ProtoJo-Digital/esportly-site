@@ -3,7 +3,7 @@
  "noms": [
   "natus vincere"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": null,
  "couleur_affichee": "#FFEE00",
  "origine": "officielle",
@@ -12,7 +12,7 @@
   "secondaire": "#F6341E",
   "confiance": "moyenne",
   "source": "https://navi.gg/",
-  "site": null,
+  "site": "https://navi.gg/",
   "note": "vérifiée le 11 octobre 2026"
  },
  "equipes": [
@@ -24,6 +24,24 @@
    "logo": "https://cdn-api.pandascore.co/images/team/image/1699/Na_vi_logo.png",
    "pays": "UA",
    "couleur_logo": "#CDC501"
+  },
+  {
+   "id": 3216,
+   "nom": "Natus Vincere",
+   "sigle": "NAVI",
+   "jeu": "csgo",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/3216/1022px_natus_vincere_2021_lightmode.png",
+   "pays": "UA",
+   "couleur_logo": "#C3B800"
+  },
+  {
+   "id": 129355,
+   "nom": "Natus Vincere",
+   "sigle": "NAVI",
+   "jeu": "valorant",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/129355/1022px_natus_vincere_2021_lightmode.png",
+   "pays": "UA",
+   "couleur_logo": "#C3B800"
   }
  ]
 }

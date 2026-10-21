@@ -3,7 +3,7 @@
  "noms": [
   "t1"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": {
   "titre": "One (DxS – Spotify Singles)",
   "lien": "https://open.spotify.com/playlist/37i9dQZF1DX0BcvW2psHDx",
@@ -37,6 +37,15 @@
    "logo": "https://cdn-api.pandascore.co/images/team/image/129810/600px_t1_2019_allmode.png",
    "pays": "KR",
    "couleur_logo": "#E5012D"
+  },
+  {
+   "id": 126061,
+   "nom": "T1",
+   "sigle": "T1",
+   "jeu": "lol",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/126061/t_oscq04.png",
+   "pays": "KR",
+   "couleur_logo": "#E21E2F"
   }
  ]
 }

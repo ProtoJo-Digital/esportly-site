@@ -4,7 +4,7 @@
   "g2",
   "g2 esports"
  ],
- "maj": "2026-10-11",
+ "maj": "2026-10-21",
  "hymne": {
   "titre": "Detonate (G2, Jeris Johnson, YONAKA)",
   "lien": "https://www.youtube.com/watch?v=k5IlYLBCx6M",
@@ -36,6 +36,24 @@
    "sigle": "G2",
    "jeu": "r6siege",
    "logo": "https://cdn-api.pandascore.co/images/team/image/126940/600px_g2_esports_2019.png",
+   "pays": "DE",
+   "couleur_logo": null
+  },
+  {
+   "id": 88,
+   "nom": "G2 Esports",
+   "sigle": "G2",
+   "jeu": "lol",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/88/g2-esports.png",
+   "pays": "DE",
+   "couleur_logo": null
+  },
+  {
+   "id": 3210,
+   "nom": "G2",
+   "sigle": "G2",
+   "jeu": "csgo",
+   "logo": "https://cdn-api.pandascore.co/images/team/image/3210/5995.png",
    "pays": "DE",
    "couleur_logo": null
   }

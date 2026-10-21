@@ -1312,4 +1312,40 @@
     <loc>https://esportly.protojo.fr/mentions-legales.html</loc>
     <lastmod>2026-10-18</lastmod>
   </url>
+  <url>
+    <loc>https://esportly.protojo.fr/equipes/fnatic.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/fnatic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/fnatic.html"/>
+  </url>
+  <url>
+    <loc>https://esportly.protojo.fr/teams/fnatic.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/fnatic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/fnatic.html"/>
+  </url>
+  <url>
+    <loc>https://esportly.protojo.fr/equipes/faze-clan.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/faze-clan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/faze-clan.html"/>
+  </url>
+  <url>
+    <loc>https://esportly.protojo.fr/teams/faze-clan.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/faze-clan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/faze-clan.html"/>
+  </url>
+  <url>
+    <loc>https://esportly.protojo.fr/equipes/natus-vincere.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/natus-vincere.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/natus-vincere.html"/>
+  </url>
+  <url>
+    <loc>https://esportly.protojo.fr/teams/natus-vincere.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://esportly.protojo.fr/equipes/natus-vincere.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://esportly.protojo.fr/teams/natus-vincere.html"/>
+  </url>
 </urlset>
