@@ -312,6 +312,18 @@ time{{color:var(--accent);font-weight:700;font-size:13px}}b{{font-size:15px}}sma
 # 1) Pages d'équipes
 organisations = sorted(p.stem for p in (SITE / "equipes").glob("*.html"))
 everything: dict[str, dict] = {}
+week_results = read_results("semaine")
+LATEST = {"fr": "Derniers résultats", "en": "Latest results"}
+
+
+def team_names(slug: str) -> set[str]:
+    """Les noms sous lesquels l'organisation joue (fiche equipes/<slug>.json), en minuscules."""
+    fiche = SITE / "equipes" / f"{slug}.json"
+    if not fiche.exists():
+        return set()
+    data = json.loads(fiche.read_text(encoding="utf-8"))
+    return {n.lower() for n in [data.get("organisation", ""), *data.get("noms", []), *(e.get("nom", "") for e in data.get("equipes", []))] if n}
+
 for slug in organisations:
     events = read_calendar(slug)
     if events is None:
@@ -320,6 +332,9 @@ for slug in organisations:
         everything[event.get("UID", event.get("URL"))] = event
     upcoming = sorted((e for e in events if NOW - timedelta(hours=3) <= e["start"] <= NOW + timedelta(days=14)),
                       key=lambda e: e["start"])[:5]
+    # Ses matchs finis des 7 derniers jours, scores cachés : seulement s'il y en a (pas de rubrique vide).
+    names = team_names(slug)
+    latest = [r for r in week_results if names & {n.lower() for n in r["teams"]}][:3]
     for folder, code in (("equipes", "fr"), ("teams", "en")):
         page = SITE / folder / f"{slug}.html"
         if not page.exists():
@@ -328,6 +343,8 @@ for slug in organisations:
         source = page.read_text(encoding="utf-8")
         body = (f'<ul class="matchs">{"".join(match_item(e, t) for e in upcoming)}</ul><p class="maj">{t["tz"]}</p>{json_ld(upcoming)}'
                 if upcoming else f'<p>{t["upnone"]}</p>')
+        if latest:
+            body += f'\n<h2 id="resultats">{LATEST[code]}</h2>\n{results_html(latest, t, EXTRA[code])}'
         block = f'{START}\n<h2 id="prochains-matchs">{t["upcoming"]}</h2>\n{body}\n{END}'
         if START in source:
             source = re.sub(re.escape(START) + ".*?" + re.escape(END), lambda _: block, source, flags=re.S)
@@ -336,6 +353,8 @@ for slug in organisations:
             if anchor < 0:
                 anchor = source.find("</main>")
             source = source[:anchor] + block + "\n" + source[anchor:]
+            source = source.replace("</style>", STYLE + "</style>", 1)
+        if ".resultats{" not in source:
             source = source.replace("</style>", STYLE + "</style>", 1)
         page.write_text(with_local_times(source), encoding="utf-8")
     # Calendrier à intégrer sur un site de fans (iframe), une page par équipe et par langue, sans script.
@@ -357,7 +376,6 @@ for slug in organisations:
 week = sorted((e for e in everything.values() if NOW - timedelta(hours=3) <= e["start"] <= NOW + timedelta(days=7)),
               key=lambda e: e["start"])
 names = {code: t["news"] for code, t in LANGS.items()}
-week_results = read_results("semaine")
 for code, t in LANGS.items():
     template = (SITE / t["news"]).read_text(encoding="utf-8")
     for other, news in names.items():  # liens de langue et hreflang : vers les pages de la semaine
